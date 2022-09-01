@@ -8,22 +8,35 @@ public class SignView : MonoBehaviour
     [SerializeField] private Transform lookPoint;
 
     [SerializeField] private Transform camPoint;
+    private string displayControlText = "Press X to view the sign";
+    private string hideControlText = "Press X to hide the sign";
+
 
     private bool playerInRange = false;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private bool signIsInFocus = false;
 
-    // Update is called once per frame
+
     void Update()
     {
         if (playerInRange)
         {
             if (Input.GetKeyUp(KeyCode.X))
             {
-                UIManager.instance.ToggleSignCamera(true);
+                if (!signIsInFocus)
+                {
+                    signIsInFocus = true;
+                    UIManager.instance.ToggleSignCamera(true);
+                    UIManager.instance.DisplayControlsText(hideControlText);
+
+                }
+                else
+                {
+                    signIsInFocus = false;
+                    UIManager.instance.ToggleSignCamera(false);
+                    UIManager.instance.DisplayControlsText(displayControlText);
+
+                }
+
             }
         }
     }
@@ -34,6 +47,7 @@ public class SignView : MonoBehaviour
         {
             playerInRange = true;
             UIManager.instance.SetSignCameraPosition(camPoint, lookPoint);
+            UIManager.instance.DisplayControlsText(displayControlText);
         }
     }
 
@@ -43,6 +57,7 @@ public class SignView : MonoBehaviour
         {
             playerInRange = false;
             UIManager.instance.ToggleSignCamera(false);
+            UIManager.instance.HideControlsText();
         }
         
     }

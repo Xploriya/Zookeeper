@@ -70,8 +70,9 @@ public class PlayerMovement : MonoBehaviour
     {
         float rotationAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + mainCam.transform.eulerAngles.y;
         float smoothAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, rotationAngle, ref turnSmoothVelocity, rotationSmoothingFactor);
-        transform.rotation = Quaternion.Euler(0, smoothAngle,0);
-
+        if(direction.magnitude >= 0.1f)
+            transform.rotation = Quaternion.Euler(0, smoothAngle,0);
+    
         Vector3 moveDirection = Quaternion.Euler(0, rotationAngle, 0) * Vector3.forward;
         
         if (isGrounded)
@@ -82,7 +83,6 @@ public class PlayerMovement : MonoBehaviour
                     Run(moveDirection);
                 else
                     Walk(moveDirection);
-                
             }
             else
             {
@@ -137,6 +137,7 @@ public class PlayerMovement : MonoBehaviour
         isJumping = true;
         canCheckForGround = false;
         isGrounded = false;
+        
     }
 
     private void MoveMidair(Vector3 midairDirection)
