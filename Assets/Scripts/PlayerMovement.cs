@@ -25,7 +25,8 @@ public class PlayerMovement : MonoBehaviour
     private float groundCheckDelay = 0.5f;
     private float timeSinceJump = 0f;
     private bool canCheckForGround = true;
-    
+    private Vector3 direction = Vector3.zero;
+
     
  
     private void Start()
@@ -33,12 +34,19 @@ public class PlayerMovement : MonoBehaviour
         controller = GetComponent<CharacterController>();
         mainCam = Camera.main;
     }
+
+    public void SetDirection(Vector3 dir)
+    {
+        direction = dir;
+    }
+
+    public void ToggleRunning()
+    {
+        isRunning = !isRunning;
+    }
     
     void Update()
     {
-        float x = Input.GetAxisRaw("Horizontal");
-        float z = Input.GetAxisRaw("Vertical");
-        Vector3 direction = new Vector3(x, 0f, z).normalized;
         
         if(canCheckForGround)
             isGrounded = Physics.CheckSphere(transform.position, groundCheckDistance, groundMask);
@@ -52,8 +60,6 @@ public class PlayerMovement : MonoBehaviour
             }
         }
         
-        if(Input.GetKeyUp(KeyCode.LeftShift))
-            isRunning = !isRunning; 
         
         MovePlayer(direction);
     }
@@ -90,8 +96,6 @@ public class PlayerMovement : MonoBehaviour
                 anim.SetTrigger("Grounded");
             }
             
-            if (Input.GetKeyUp(KeyCode.Space))
-                Jump();
         }
         else
         {
@@ -126,7 +130,7 @@ public class PlayerMovement : MonoBehaviour
 
     }
     
-    private void Jump()
+    public void Jump()
     {
         velocity.y = Mathf.Sqrt(jumpHeight * -gravity);
         anim.SetTrigger("Jump");
