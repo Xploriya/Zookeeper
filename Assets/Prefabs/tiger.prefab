@@ -1,5 +1,96 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &404065853
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 404065854}
+  - component: {fileID: 404065856}
+  - component: {fileID: 404065855}
+  m_Layer: 0
+  m_Name: DialogAreaTiger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &404065854
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 404065853}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3719331955268519823}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &404065856
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 404065853}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 70, y: 1, z: 70}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &404065855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 404065853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16fd6aeb06579f04a974c833251e7e03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogToPlay: {fileID: 8300000, guid: 6cde4892b0932054a9f89074bbfd9ebf, type: 3}
+  hint: Press "R" to place food for the tiger
+--- !u!1 &416968864
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 416968865}
+  m_Layer: 0
+  m_Name: PoopLocation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &416968865
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416968864}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.016, z: -0.846}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3719331955268519823}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3719331955268752385
 GameObject:
   m_ObjectHideFlags: 0
@@ -11127,6 +11218,8 @@ GameObject:
   - component: {fileID: 3719331955268754412}
   - component: {fileID: 3719331955268754400}
   - component: {fileID: 3719331955268754406}
+  - component: {fileID: 2000418335}
+  - component: {fileID: 2000418334}
   m_Layer: 0
   m_Name: tiger
   m_TagString: Untagged
@@ -11148,6 +11241,8 @@ Transform:
   m_Children:
   - {fileID: 3719331955268517913}
   - {fileID: 3719331955268517907}
+  - {fileID: 404065854}
+  - {fileID: 416968865}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11230,6 +11325,8 @@ MonoBehaviour:
   roaringTimeInSeconds: 2
   attackingTimeInSeconds: 2
   poopingTimeInSeconds: 3
+  poopLocation: {fileID: 416968865}
+  poopPrefab: {fileID: 8169789087023238009, guid: 9ce8d50c466686145afceaaa0fa57da9, type: 3}
 --- !u!114 &3719331955268754406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11243,6 +11340,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roar: {fileID: 8300000, guid: e14b2016abd080a43b063101387725ee, type: 3}
+  footsteps: {fileID: 8300000, guid: 9a69cb2e3ac745f46aef94f6011f4f3b, type: 3}
+  finalDialog: {fileID: 8300000, guid: 76be23d5255dac8448d9acabf3dbb9ff, type: 3}
+--- !u!65 &2000418335
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3719331955268754415}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 12, y: 2.35, z: 12}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2000418334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3719331955268754415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 702decf13a53b934da9fd2d98b276670, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3719331955268754417
 GameObject:
   m_ObjectHideFlags: 0

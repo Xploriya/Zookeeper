@@ -6,6 +6,7 @@ public class TigerSound : MonoBehaviour
 {
     [SerializeField] private AudioClip roar;
     [SerializeField] private AudioClip footsteps;
+    [SerializeField] private AudioClip finalDialog;
 
     public void PlayRoarSound()
     {
@@ -15,6 +16,12 @@ public class TigerSound : MonoBehaviour
     public void PlayFootstepsSound()
     {
         SoundManager.instance.PlaySfxSpatial(footsteps, transform.position);
+
+    }
+
+    public void PlayFinalDialog()
+    {
+        SoundManager.instance.PlaySfxGlobal(finalDialog);
 
     }
 }

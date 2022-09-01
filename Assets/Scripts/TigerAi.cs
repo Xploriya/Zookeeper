@@ -58,6 +58,10 @@ public class TigerAi : MonoBehaviour
         anim.SetTrigger(IDLE);
         movementScript.DisableMovement();
         currentState = TigerState.Idle;
+        audioScript.PlayFinalDialog();
+        ZooLevelManager.instance.GameEnded();
+
+
     }
 
     private void Update()
@@ -155,6 +159,5 @@ public class TigerAi : MonoBehaviour
         movementScript.EnableMovement();
         movementScript.SetSpeedToWalking();
         movementScript.MoveTowardsFood(location);
-        ZooLevelManager.instance.GameEnded();
     }
 }

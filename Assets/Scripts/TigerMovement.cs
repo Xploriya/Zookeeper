@@ -48,16 +48,19 @@ public class TigerMovement : MonoBehaviour
 
     void Update()
     {
-       
-            if (agent.enabled && !agent.pathPending && agent.remainingDistance < 3f)
-                if (!isEating)
-                {
-                    PatrolStepCompleted?.Invoke();
-                }
-                else
-                {
-                    ReachedFood?.Invoke();
-                }
+
+        if (agent.enabled && !agent.pathPending && agent.remainingDistance < 3f)
+        {
+            if (!isEating)
+            {
+                PatrolStepCompleted?.Invoke();
+            }
+            else
+            {
+                ReachedFood?.Invoke();
+            }
+        }
+                
 
             if (agent.enabled)
             {
