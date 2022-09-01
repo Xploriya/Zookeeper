@@ -11,13 +11,16 @@ public class TigerMovement : MonoBehaviour
     [SerializeField] Transform[] patrolPoints;
     [SerializeField] private float walkingSpeed = 2f;
     [SerializeField] private float runningSpeed = 4.5f;
+    private float timeToPlayFootsteps = 6f;
+    private float timeSinceFootstepsPlayed = 0f;
 
     private int destPoint = 0;
     private NavMeshAgent agent;
     private bool agentIsInitialized = false;
     
     public event Action PatrolStepCompleted; 
-    
+    public event Action FootstepSfxShouldPlay; 
+
     
 
 
@@ -43,6 +46,16 @@ public class TigerMovement : MonoBehaviour
         
         if (agent.enabled && !agent.pathPending && agent.remainingDistance < 3f)
             PatrolStepCompleted?.Invoke();
+
+        if (agent.enabled)
+        {
+            timeSinceFootstepsPlayed += Time.deltaTime;
+            if (timeSinceFootstepsPlayed >= timeToPlayFootsteps)
+            {
+                timeSinceFootstepsPlayed = 0f;
+                FootstepSfxShouldPlay?.Invoke();
+            }
+        }
     }
 
     public void SetSpeedToWalking()

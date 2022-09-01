@@ -8,12 +8,14 @@ public class SignView : MonoBehaviour
     [SerializeField] private Transform lookPoint;
 
     [SerializeField] private Transform camPoint;
+
     private string displayControlText = "Press X to view the sign";
-    private string hideControlText = "Press X to hide the sign";
+    private string hideControlText = "Press X to return";
 
 
     private bool playerInRange = false;
     private bool signIsInFocus = false;
+    private bool dialogHasBeenPlayed = false;
 
 
     void Update()

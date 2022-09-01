@@ -18,13 +18,19 @@ public class TigerAi : MonoBehaviour
 
     private TigerState currentState = TigerState.Walk;
     private TigerMovement movementScript;
+    private TigerSound audioScript;
     private Animator anim;
+    private float timeUntilPooping = 300f;
+    private float timeSinceLastPoop = 0f;
+    private bool canPoop = false;
 
     [SerializeField] private float hidingTimeInSeconds = 5f;
     [SerializeField] private float idlingTimeInSeconds = 8f;
     [SerializeField] private float roaringTimeInSeconds = 3f;
     [SerializeField] private float attackingTimeInSeconds = 3f;
     [SerializeField] private float poopingTimeInSeconds = 3f;
+    [SerializeField] private Transform poopLocation;
+    [SerializeField] private GameObject poopPrefab;
 
 
     
@@ -39,9 +45,26 @@ public class TigerAi : MonoBehaviour
     {
         movementScript = GetComponent<TigerMovement>();
         movementScript.PatrolStepCompleted += PatrolStepCompleted;
+        movementScript.FootstepSfxShouldPlay += PlayFootstepsSoundEffect;
         anim = GetComponent<Animator>();
+        audioScript = GetComponent<TigerSound>();
         Invoke(nameof(ActivateObjectAfterDelay), hidingTimeInSeconds);
         gameObject.SetActive(false);
+    }
+
+    private void Update()
+    {
+        timeSinceLastPoop += Time.deltaTime;
+        if (timeSinceLastPoop >= timeUntilPooping)
+        {
+            canPoop = true;
+            timeSinceLastPoop = 0f;
+        }
+    }
+
+    private void PlayFootstepsSoundEffect()
+    {
+        audioScript.PlayFootstepsSound();
     }
 
     private void PatrolStepCompleted()
@@ -89,17 +112,25 @@ public class TigerAi : MonoBehaviour
             case TigerState.Roar:
                 anim.SetTrigger(ROAR);
                 movementScript.DisableMovement();
+                audioScript.PlayRoarSound();
                 StartCoroutine(EndStateAfterDelay(roaringTimeInSeconds));
                 break;
             case TigerState.Attack:
                 anim.SetTrigger(ATTACK);
                 movementScript.DisableMovement();
+                audioScript.PlayRoarSound();
                 StartCoroutine(EndStateAfterDelay(attackingTimeInSeconds));
                 break;
             case TigerState.Poop:
                 anim.SetTrigger(IDLE);
                 movementScript.DisableMovement();
-                StartCoroutine(EndStateAfterDelay(poopingTimeInSeconds)); //ADD Poop prefab
+                StartCoroutine(EndStateAfterDelay(poopingTimeInSeconds));
+                if (canPoop)
+                {
+                    Instantiate(poopPrefab, poopLocation.position, Quaternion.identity);
+                    timeSinceLastPoop = 0f;
+                    canPoop = false;
+                }
                 break;
         }
     }
