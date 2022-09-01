@@ -6,6 +6,7 @@ using UnityEngine;
 public class DialogArea : MonoBehaviour
 {
     [SerializeField] private AudioClip dialogToPlay;
+    [SerializeField] private string hint;
     private bool dialogHasPlayed = false;
     private void OnTriggerEnter(Collider other)
     {
@@ -13,6 +14,7 @@ public class DialogArea : MonoBehaviour
             if (other.transform.CompareTag("Player"))
             {
                 SoundManager.instance.PlaySfxGlobal(dialogToPlay);
+                UIManager.instance.DisplayTimedHint(hint, 6f);
                 Destroy(gameObject, 5f);
             }
             

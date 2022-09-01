@@ -46,10 +46,18 @@ public class TigerAi : MonoBehaviour
         movementScript = GetComponent<TigerMovement>();
         movementScript.PatrolStepCompleted += PatrolStepCompleted;
         movementScript.FootstepSfxShouldPlay += PlayFootstepsSoundEffect;
+        movementScript.ReachedFood += OnReachedFood;
         anim = GetComponent<Animator>();
         audioScript = GetComponent<TigerSound>();
         Invoke(nameof(ActivateObjectAfterDelay), hidingTimeInSeconds);
         gameObject.SetActive(false);
+    }
+
+    private void OnReachedFood()
+    {
+        anim.SetTrigger(IDLE);
+        movementScript.DisableMovement();
+        currentState = TigerState.Idle;
     }
 
     private void Update()
@@ -139,5 +147,14 @@ public class TigerAi : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         RandomizeState();
+    }
+
+    public void PursueFood(Vector3 location)
+    {
+        anim.SetTrigger(WALK);
+        movementScript.EnableMovement();
+        movementScript.SetSpeedToWalking();
+        movementScript.MoveTowardsFood(location);
+        ZooLevelManager.instance.GameEnded();
     }
 }

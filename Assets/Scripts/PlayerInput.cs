@@ -5,9 +5,11 @@ using UnityEngine;
 public class PlayerInput : MonoBehaviour
 {
     private PlayerMovement movementScript;
+    private PlayerMeatPlacer meatPlacerScript;
     void Start()
     {
         movementScript = GetComponent<PlayerMovement>();
+        meatPlacerScript = GetComponent<PlayerMeatPlacer>();
     }
 
     void Update()
@@ -22,6 +24,10 @@ public class PlayerInput : MonoBehaviour
         
         if (Input.GetKeyUp(KeyCode.Space))
             movementScript.Jump();
+        
+        if(Input.GetKeyUp(KeyCode.R))
+            meatPlacerScript.PlaceMeat();
+            
 
     }
 }

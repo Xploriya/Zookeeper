@@ -17,14 +17,17 @@ public class TigerMovement : MonoBehaviour
     private int destPoint = 0;
     private NavMeshAgent agent;
     private bool agentIsInitialized = false;
-    
-    public event Action PatrolStepCompleted; 
-    public event Action FootstepSfxShouldPlay; 
+    private bool isEating = false;
 
-    
+    public event Action PatrolStepCompleted;
+    public event Action FootstepSfxShouldPlay;
+    public event Action ReachedFood;
 
 
-    void Start () {
+
+
+    void Start()
+    {
         agent = GetComponent<NavMeshAgent>();
         agent.autoBraking = false;
         agentIsInitialized = true;
@@ -33,7 +36,8 @@ public class TigerMovement : MonoBehaviour
     }
 
 
-    public void GotoNextPoint() {
+    public void GotoNextPoint()
+    {
         if (patrolPoints.Length == 0 || !agentIsInitialized)
             return;
 
@@ -42,43 +46,58 @@ public class TigerMovement : MonoBehaviour
     }
 
 
-    void Update () {
-        
-        if (agent.enabled && !agent.pathPending && agent.remainingDistance < 3f)
-            PatrolStepCompleted?.Invoke();
+    void Update()
+    {
+       
+            if (agent.enabled && !agent.pathPending && agent.remainingDistance < 3f)
+                if (!isEating)
+                {
+                    PatrolStepCompleted?.Invoke();
+                }
+                else
+                {
+                    ReachedFood?.Invoke();
+                }
 
-        if (agent.enabled)
-        {
-            timeSinceFootstepsPlayed += Time.deltaTime;
-            if (timeSinceFootstepsPlayed >= timeToPlayFootsteps)
+            if (agent.enabled)
             {
-                timeSinceFootstepsPlayed = 0f;
-                FootstepSfxShouldPlay?.Invoke();
+                timeSinceFootstepsPlayed += Time.deltaTime;
+                if (timeSinceFootstepsPlayed >= timeToPlayFootsteps)
+                {
+                    timeSinceFootstepsPlayed = 0f;
+                    FootstepSfxShouldPlay?.Invoke();
+                }
             }
-        }
+       
     }
 
     public void SetSpeedToWalking()
     {
-        if(agentIsInitialized)
+        if (agentIsInitialized)
             agent.speed = walkingSpeed;
     }
-    
+
     public void SetSpeedToRunning()
     {
-        if(agentIsInitialized)
+        if (agentIsInitialized)
             agent.speed = runningSpeed;
     }
 
     public void DisableMovement()
     {
-        if(agentIsInitialized)
+        if (agentIsInitialized)
             agent.enabled = false;
     }
 
     public void EnableMovement()
     {
-        if(agentIsInitialized)
+        if (agentIsInitialized)
             agent.enabled = true;
+    }
+
+    public void MoveTowardsFood(Vector3 foodPosition)
+    {
+        agent.destination = foodPosition;
+        isEating = true;
     }
 }
