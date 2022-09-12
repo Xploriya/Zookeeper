@@ -6,6 +6,7 @@ using UnityEngine;
 public class TigerFoodLocator : MonoBehaviour
 {
     private TigerAi tigerAi;
+    private bool foodLocated = false;
 
     private void Start()
     {
@@ -14,7 +15,10 @@ public class TigerFoodLocator : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Food")) 
+        if (other.CompareTag("Food") && !foodLocated)
+        {
             tigerAi.PursueFood(other.transform.position);
+            foodLocated = true;
+        }
     }
 }

@@ -15,7 +15,6 @@ public class SignView : MonoBehaviour
 
     private bool playerInRange = false;
     private bool signIsInFocus = false;
-    private bool dialogHasBeenPlayed = false;
 
 
     void Update()

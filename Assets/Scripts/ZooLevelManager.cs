@@ -1,17 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
+using Cursor = UnityEngine.Cursor;
 
 public class ZooLevelManager : Singleton<ZooLevelManager>
 {
     [SerializeField] private AudioClip introDialog;
-    private float delayWhenGameWon = 15f;
-    private string controlsHint = "Use W A S D to move, MOUSE to look around, SHIFT to run";
+    private float delayWhenGameWon = 10f;
+    private string controlsHint = "Controls: WASD = move, SPACE = Jump, SHIFT = Run, MOUSE: Control Camera";
     
     void Start()
     {
         SoundManager.instance.PlaySfxGlobal(introDialog);
-        UIManager.instance.DisplayTimedHint(controlsHint, 15f);
+        UIManager.instance.DisplayTimedHint(controlsHint, 20f);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
 
     }
 
@@ -22,8 +26,10 @@ public class ZooLevelManager : Singleton<ZooLevelManager>
 
     IEnumerator ShowWinMessageAfterDelay()
     {
-        yield return new WaitForSeconds(delayWhenGameWon);
         UIManager.instance.DisplayWinText();
+        yield return new WaitForSeconds(delayWhenGameWon);
+        UIManager.instance.HideWinText();
+        GameManager.instance.LoadLevel(2);
     }
 
   

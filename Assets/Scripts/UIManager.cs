@@ -56,6 +56,11 @@ public class UIManager : Singleton<UIManager>
     {
         winText.enabled = true;
     }
+    
+    public void HideWinText()
+    {
+        winText.enabled = false;
+    }
 
     public void DisplayTimedHint(string hint, float delay)
     {
@@ -68,5 +73,10 @@ public class UIManager : Singleton<UIManager>
     {
         yield return new WaitForSeconds(delay);
         HideControlsText();
+    }
+
+    public void RelinkSignCamera()
+    {
+        signCamera = GameObject.FindGameObjectWithTag("SignCamera").GetComponent<CinemachineVirtualCamera>();
     }
 }

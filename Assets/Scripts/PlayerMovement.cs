@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isRunning = false;
     private bool isJumping = false;
     
-    private float groundCheckDistance = 0.6f;
+    private float groundCheckDistance = 0.2f;
     [SerializeField] private LayerMask groundMask;
     private Vector3 velocity;
     private float gravity = -9.8f;
@@ -89,7 +89,7 @@ public class PlayerMovement : MonoBehaviour
                 Idle();
             }
             
-            //velocity.y = -100f * Time.deltaTime;
+            velocity.y = -100f * Time.deltaTime;
             if (isJumping)
             {
                 isJumping = false;
@@ -132,11 +132,15 @@ public class PlayerMovement : MonoBehaviour
     
     public void Jump()
     {
-        velocity.y = Mathf.Sqrt(jumpHeight * -gravity);
-        anim.SetTrigger("Jump");
-        isJumping = true;
-        canCheckForGround = false;
-        isGrounded = false;
+        if (isGrounded)
+        {
+            velocity.y = Mathf.Sqrt(jumpHeight * -gravity);
+            anim.SetTrigger("Jump");
+            isJumping = true;
+            canCheckForGround = false;
+            isGrounded = false;
+        }
+        
         
     }
 

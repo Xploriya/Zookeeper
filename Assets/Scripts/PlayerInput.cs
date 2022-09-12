@@ -6,10 +6,12 @@ public class PlayerInput : MonoBehaviour
 {
     private PlayerMovement movementScript;
     private PlayerMeatPlacer meatPlacerScript;
+    private PlayerCleaner cleaningScript;
     void Start()
     {
         movementScript = GetComponent<PlayerMovement>();
         meatPlacerScript = GetComponent<PlayerMeatPlacer>();
+        cleaningScript = GetComponent<PlayerCleaner>();
     }
 
     void Update()
@@ -27,6 +29,9 @@ public class PlayerInput : MonoBehaviour
         
         if(Input.GetKeyUp(KeyCode.R))
             meatPlacerScript.PlaceMeat();
+        
+        if(Input.GetKeyUp(KeyCode.E))
+            cleaningScript.Clean();
             
 
     }
