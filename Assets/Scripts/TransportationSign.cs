@@ -8,8 +8,8 @@ public class TransportationSign : MonoBehaviour
     [SerializeField] private Transform camPoint;
     [SerializeField] private int levelToLoadIndex;
     
-    private string displayControlText = "Press X to view the sign";
-    private string hideControlText = "Press X to return";
+    private string displayControlText = "Press E to view the sign";
+    private string hideControlText = "Press E to return";
 
 
     private bool playerInRange = false;
@@ -20,7 +20,7 @@ public class TransportationSign : MonoBehaviour
     {
         if (playerInRange)
         {
-            if (Input.GetKeyUp(KeyCode.X))
+            if (Input.GetKeyUp(KeyCode.E))
             {
                 if (!signIsInFocus)
                 {
@@ -38,7 +38,7 @@ public class TransportationSign : MonoBehaviour
                 }
             }
             
-            if (Input.GetKeyUp(KeyCode.Y))
+            if (Input.GetKeyUp(KeyCode.T))
             {
                 GameManager.instance.LoadLevel(levelToLoadIndex);
             }

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using Cursor = UnityEngine.Cursor;
 
-public class ZooLevelManager : Singleton<ZooLevelManager>
+public class ZooLevelManager : MonoBehaviour
 {
     [SerializeField] private AudioClip introDialog;
     private float delayWhenGameWon = 10f;
@@ -21,6 +21,8 @@ public class ZooLevelManager : Singleton<ZooLevelManager>
 
     public void GameEnded()
     {
+        PlayerPrefs.SetInt("Completed", 1);
+        PlayerPrefs.Save();
         StartCoroutine(ShowWinMessageAfterDelay());
     }
 

@@ -6,6 +6,7 @@ public class CleanerBox : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("object triggered is =>>>" + other.name);
         if (other.CompareTag("Poop"))
         {
             other.gameObject.GetComponent<Poop>().Clean();

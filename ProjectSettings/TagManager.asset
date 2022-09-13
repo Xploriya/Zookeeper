@@ -8,6 +8,9 @@ TagManager:
   - Poop
   - Pet
   - SignCamera
+  - Tiger
+  - LevelManager
+  - JungleDoor
   layers:
   - Default
   - TransparentFX

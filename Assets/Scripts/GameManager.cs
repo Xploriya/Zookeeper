@@ -6,10 +6,12 @@ using UnityEngine.SceneManagement;
 public class GameManager : Singleton<GameManager>
 {
     private string controlsHint = "Controls: WASD = move, SPACE = Jump, SHIFT = Run, MOUSE: Control Camera";
-    
 
+    
     void Start()
     {
+        PlayerPrefs.SetInt("Completed", 0);
+        PlayerPrefs.Save();
         UIManager.instance.DisplayTimedHint(controlsHint, 20f);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -19,7 +21,7 @@ public class GameManager : Singleton<GameManager>
     {
         SceneManager.LoadScene(index);
         StartCoroutine(UpdateCamerasWithDelay());
-
+        
     }
 
     IEnumerator UpdateCamerasWithDelay()

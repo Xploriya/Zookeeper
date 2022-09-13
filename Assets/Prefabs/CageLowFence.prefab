@@ -1,5 +1,63 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &894008997
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 894008998}
+  - component: {fileID: 894009000}
+  - component: {fileID: 894008999}
+  m_Layer: 0
+  m_Name: FoodPlacementArea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &894008998
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 894008997}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7065771545053007143}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &894009000
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 894008997}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 81, y: 1, z: 81}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &894008999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 894008997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6c05d064862d1e4287e5d6da57952be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6052040940583396595
 GameObject:
   m_ObjectHideFlags: 0
@@ -12,6 +70,8 @@ GameObject:
   - component: {fileID: 6052040940584643605}
   - component: {fileID: 6052040940585654607}
   - component: {fileID: 6052040940585654604}
+  - component: {fileID: 628809223}
+  - component: {fileID: 628809222}
   m_Layer: 0
   m_Name: gate
   m_TagString: Untagged
@@ -97,6 +157,31 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.47368604, y: 5.38, z: 4.8365817}
   m_Center: {x: -0.51967204, y: 2.8131008, z: 2.6352563}
+--- !u!65 &628809223
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6052040940583396595}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 9.24, y: 7.85, z: 5.6}
+  m_Center: {x: -0.51967204, y: 2.8131008, z: 2.6352563}
+--- !u!114 &628809222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6052040940583396595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62e7a6367a81b84488a82e0fe1d7b5bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6052040940583414325
 GameObject:
   m_ObjectHideFlags: 0
@@ -3962,6 +4047,7 @@ Transform:
   - {fileID: 7065771544880962943}
   - {fileID: 7065771545835131305}
   - {fileID: 7065771545367497024}
+  - {fileID: 894008998}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7515,16 +7601,46 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4557925868540625449, guid: f832a3cb7745a3c428e03eb75d636b67, type: 3}
       propertyPath: m_text
-      value: Press x to read me, then the door will open and you can feed the deer
+      value: Open the door to the cage and feed the deer
       objectReference: {fileID: 0}
     - target: {fileID: 6523207633447889053, guid: f832a3cb7745a3c428e03eb75d636b67, type: 3}
       propertyPath: doorToOpen
       value: 
       objectReference: {fileID: 6052040940583836895}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6523207633447889053, guid: f832a3cb7745a3c428e03eb75d636b67, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f832a3cb7745a3c428e03eb75d636b67, type: 3}
+--- !u!1 &4633755710756927094 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2090163778365138586, guid: f832a3cb7745a3c428e03eb75d636b67, type: 3}
+  m_PrefabInstance: {fileID: 6723778197194608876}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &789031547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4633755710756927094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a356919891cee5d4e8099807c20ed2cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lookPoint: {fileID: 5516629808309420845}
+  camPoint: {fileID: 5516629809258449879}
 --- !u!4 &5405930235124968652 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1606114141106863136, guid: f832a3cb7745a3c428e03eb75d636b67, type: 3}
+  m_PrefabInstance: {fileID: 6723778197194608876}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5516629808309420845 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1279208319437788097, guid: f832a3cb7745a3c428e03eb75d636b67, type: 3}
+  m_PrefabInstance: {fileID: 6723778197194608876}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5516629809258449879 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1279208318776335163, guid: f832a3cb7745a3c428e03eb75d636b67, type: 3}
   m_PrefabInstance: {fileID: 6723778197194608876}
   m_PrefabAsset: {fileID: 0}

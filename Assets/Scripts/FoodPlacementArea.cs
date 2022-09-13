@@ -6,14 +6,21 @@ using UnityEngine;
 public class FoodPlacementArea : MonoBehaviour, TaskArea
 {
     public event Action TaskCompleted;
-    private bool foodLocated = false;
+    [SerializeField] private int numOfFoodsRequired = 3;
+
+    private int foodsPlacedSoFar = 0;
+    
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Food") && !foodLocated)
+        if (other.CompareTag("Food") && foodsPlacedSoFar < numOfFoodsRequired)
         {
-            foodLocated = true;
-            TaskCompleted?.Invoke();
-            Destroy(gameObject, 3f);
+            foodsPlacedSoFar++;
+            if (foodsPlacedSoFar >= numOfFoodsRequired)
+            {
+                TaskCompleted?.Invoke();
+                Destroy(gameObject, 3f);
+            }
+            
         }
     }
 

@@ -32,17 +32,22 @@ public class TigerAi : MonoBehaviour
     [SerializeField] private Transform poopLocation;
     [SerializeField] private GameObject poopPrefab;
 
+    private ZooLevelManager levelManager;
 
-    
+
     private static readonly int WALK = Animator.StringToHash("Walk");
     private static readonly int RUN = Animator.StringToHash("Run");
     private static readonly int IDLE = Animator.StringToHash("Idle");
     private static readonly int ROAR = Animator.StringToHash("Roar");
     private static readonly int ATTACK = Animator.StringToHash("Attack");
 
+
     // Start is called before the first frame update
     void Start()
     {
+        levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<ZooLevelManager>();
+
+
         movementScript = GetComponent<TigerMovement>();
         movementScript.PatrolStepCompleted += PatrolStepCompleted;
         movementScript.FootstepSfxShouldPlay += PlayFootstepsSoundEffect;
@@ -59,9 +64,7 @@ public class TigerAi : MonoBehaviour
         movementScript.DisableMovement();
         currentState = TigerState.Idle;
         audioScript.PlayFinalDialog();
-        ZooLevelManager.instance.GameEnded();
-
-
+        levelManager.GameEnded();
     }
 
     private void Update()
@@ -101,7 +104,7 @@ public class TigerAi : MonoBehaviour
     private void SetNewState(TigerState state)
     {
         currentState = state;
-        
+
         switch (currentState)
         {
             case TigerState.Walk:
@@ -143,6 +146,7 @@ public class TigerAi : MonoBehaviour
                     timeSinceLastPoop = 0f;
                     canPoop = false;
                 }
+
                 break;
         }
     }

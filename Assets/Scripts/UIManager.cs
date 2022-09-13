@@ -12,7 +12,11 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] private TextMeshProUGUI winText;
     private Transform camPoint;
     private Transform lookAtPoint;
-    
+
+    private bool dialogIsOpen = false;
+    private float timeToHideMessage = 8f;
+    private float timeSinceMessageAppeared = 0f;
+
 
     private void Start()
     {
@@ -20,11 +24,24 @@ public class UIManager : Singleton<UIManager>
         winText.enabled = false;
     }
 
+    private void Update()
+    {
+        if (dialogIsOpen)
+        {
+            timeSinceMessageAppeared += Time.deltaTime;
+            if (timeSinceMessageAppeared >= timeToHideMessage)
+            {
+                dialogIsOpen = false;
+                timeSinceMessageAppeared = 0f;
+                HideControlsText();
+            }
+        }
+    }
+
     public void SetSignCameraPosition(Transform camPlace, Transform pointToLookAt)
     {
         camPoint = camPlace;
         lookAtPoint = pointToLookAt;
-
     }
 
     public void ToggleSignCamera(bool enableCam)
@@ -46,7 +63,7 @@ public class UIManager : Singleton<UIManager>
         controlsText.enabled = true;
         controlsText.text = text;
     }
-    
+
     public void HideControlsText()
     {
         controlsText.enabled = false;
@@ -56,7 +73,7 @@ public class UIManager : Singleton<UIManager>
     {
         winText.enabled = true;
     }
-    
+
     public void HideWinText()
     {
         winText.enabled = false;
@@ -66,14 +83,12 @@ public class UIManager : Singleton<UIManager>
     {
         controlsText.enabled = true;
         controlsText.text = hint;
-        StartCoroutine(HideTextAfterDelay(delay));
+
+        dialogIsOpen = true;
+        timeSinceMessageAppeared = 0f;
+        timeToHideMessage = delay;
     }
 
-    IEnumerator HideTextAfterDelay(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        HideControlsText();
-    }
 
     public void RelinkSignCamera()
     {

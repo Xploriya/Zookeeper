@@ -9,8 +9,8 @@ public class SignView : MonoBehaviour
 
     [SerializeField] private Transform camPoint;
 
-    private string displayControlText = "Press X to view the sign";
-    private string hideControlText = "Press X to return";
+    private string displayControlText = "Press E to view the sign";
+    private string hideControlText = "Press E to return";
 
 
     private bool playerInRange = false;
@@ -21,7 +21,7 @@ public class SignView : MonoBehaviour
     {
         if (playerInRange)
         {
-            if (Input.GetKeyUp(KeyCode.X))
+            if (Input.GetKeyUp(KeyCode.E))
             {
                 if (!signIsInFocus)
                 {
