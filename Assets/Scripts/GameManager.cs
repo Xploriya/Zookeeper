@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : Singleton<GameManager>
 {
     private string controlsHint = "Controls: WASD = move, SPACE = Jump, SHIFT = Run, MOUSE: Control Camera";
-
+    private bool playerWantsToExit = false;
+    
     
     void Start()
     {
@@ -31,5 +33,18 @@ public class GameManager : Singleton<GameManager>
         UIManager.instance.ToggleSignCamera(false);
     }
 
-   
+    private void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            if (!playerWantsToExit)
+            {
+                playerWantsToExit = true;
+            }
+            else
+            {
+                Application.Quit();
+            }
+        }
+    }
 }

@@ -6,7 +6,7 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     private bool doorIsOpen = false;
-    private float closureDelay = 10f;
+    private float closureDelay = 7f;
     private Quaternion originalRotation;
     private bool playerInRange = false;
 
