@@ -4352,7 +4352,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lookPoint: {fileID: 793221077}
   camPoint: {fileID: 91973635}
-  levelToLoadIndex: 1
+  levelToLoadIndex: 2
 --- !u!1 &45610598
 GameObject:
   m_ObjectHideFlags: 0
@@ -64835,7 +64835,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 896257415018237048}
-  m_LocalRotation: {x: 0.22083701, y: -0.000000008390783, z: 0.0000000018999027, w: 0.97531074}
+  m_LocalRotation: {x: 0.22083701, y: 0.000000008390786, z: -0.0000000018999033, w: 0.97531074}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

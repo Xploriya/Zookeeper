@@ -31,7 +31,7 @@ public class ZooLevelManager : MonoBehaviour
         UIManager.instance.DisplayWinText();
         yield return new WaitForSeconds(delayWhenGameWon);
         UIManager.instance.HideWinText();
-        GameManager.instance.LoadLevel(2);
+        GameManager.instance.LoadLevel(3);
     }
 
   

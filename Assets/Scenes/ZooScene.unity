@@ -4352,7 +4352,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lookPoint: {fileID: 793221077}
   camPoint: {fileID: 91973635}
-  levelToLoadIndex: 1
+  levelToLoadIndex: 2
 --- !u!1 &45610598
 GameObject:
   m_ObjectHideFlags: 0
