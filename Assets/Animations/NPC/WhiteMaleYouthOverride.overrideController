@@ -1,0 +1,13 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: WhiteMaleYouthOverride
+  m_Controller: {fileID: 9100000, guid: 85927465c2682e44caa88dc5b034f3ed, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: -203655887218126122, guid: 80529eeac87b8464fa1da27eba9ea52c, type: 3}
+    m_OverrideClip: {fileID: -203655887218126122, guid: dc046b493e668a54e8a78ceb5a93bb88, type: 3}

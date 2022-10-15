@@ -106,7 +106,7 @@ Material:
     - _NormalTiling: 0.25
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _ProbeReflectionIntensity: 0.578
+    - _ProbeReflectionIntensity: 0.358
     - _RealtimeReflectionIntensity: 1
     - _ReflectionIntensity: 0.385
     - _Refraction: 0.4
