@@ -12,9 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/ZooScene.unity
     guid: db4127fd7d1b9a94c975b0065e8f2ada
   - enabled: 1
-    path: Assets/Scenes/ZookeeperScene.unity
+    path: Assets/Scenes/JungleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Scenes/ZooEnd.unity
-    guid: 745d907b4a6d65d40b614bb953bd81ee
+    path: Assets/Scenes/ZooCompleted.unity
+    guid: 33050803e54f77c4e9d214a203f20969
   m_configObjects: {}
